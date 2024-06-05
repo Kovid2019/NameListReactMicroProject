@@ -1,33 +1,48 @@
 
 import './App.css';
+import {useState} from "react";
+import { Display } from './components/Display';
+import { Form } from './components/Form';
+import { UserList } from './components/UserList';
 
 function App() {
+
+  // const [name,setName]=useState("")
+  const [list,setList]=useState([])
+
+  const addUser=name=>{
+   
+    setList([...list,name]);
+  }
+  // const handleOnChange=(e)=>{
+  //   const {value}=e.target;
+  //   // console.log(value);
+  //   setName(value)
+  // }
+  // const handleOnSubmit=e=>{
+  //   e.preventDefault();
+  //   setList([...list,name])
+  // }
   return (
-    <div className='wrapper' style={{display:"flex", height:"100vh", justifyContent:"center", alignItems:"center", fontSize:"2rem"}}>
+    <div className='wrapper' style={{display:"flex", height:"100vh", justifyContent:"center", alignItems:"center", fontSize:"2rem"}}  
+    >
       
-      <div className='userList' style={{
+        <div className='userList' style={{
         boxShadow:"0 0 10px grey",
         padding:"2rem"
-      }}>
-        <div className="display">As you are typing</div>
-        <div className='form'>
-          <form action="">
-            <input type="text" />
-            <button>Add User</button>
-          </form>
-        </div>
+      }}
+      >
+        
+
+        <Form addUser={addUser}/>
         <hr/>
 
-        <div className='list'>
-          <ul>
-            <li>Prem</li>
-            <li>Kov</li>
-          </ul>
+        <UserList list={list} />
         </div>
-      </div>
-
     </div>
+
+ 
   );
-}
+};
 
 export default App;
